@@ -14,6 +14,7 @@ import { ContactComponent } from './contact/contact.component';
     AppComponent,
     HeaderComponent,
     InfoComponent, 
+    HomeComponent,
     ContactComponent,
   ],
   imports: [
