@@ -13,8 +13,7 @@ p{
   justify-content: space-between; /* Espacio entre las columnas */
   align-items: flex-start; /* Alinear al principio verticalmente */
   flex-wrap: wrap; /* Permitir que los elementos se envuelvan si es necesario */
-  gap: 1px; /* Espacio entre columnas */
-  padding: 20px;
+  gap: 1px;  
 }
 
 /* Estilo para las columnas */
@@ -31,13 +30,13 @@ p{
   .column-one,
   .column-two,
   .column-three{
-    max-width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+    max-width: 60%; /* Ocupa el ancho completo en pantallas pequeñas */
   }
 }
 
 /* Folder styles */
 .folder {
-  -webkit-perspective: 500px;
+  -webkit-perspective: 400px;
   perspective: 500px;
   width: 240px;
   height: 100px;
