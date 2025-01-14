@@ -1,182 +1,307 @@
-.parallax {
+/* General styles */
+body { 
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+p{
+  color: #000000;
+}
+/* General styles for the row wrapper */
+.row.wrapper {
+  display: flex; /* Usamos flexbox para alinear en filas o columnas */
+  justify-content: space-between; /* Espacio entre las columnas */
+  align-items: flex-start; /* Alinear al principio verticalmente */
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan si es necesario */
+  gap: 1px; /* Espacio entre columnas */
+  padding: 20px;
+}
+
+/* Estilo para las columnas */
+.column-one,
+.column-two ,
+.column-three{
+  flex: 1; /* Ajusta cada columna para que ocupe igual espacio */
+  max-width: 80%; /* Controla el ancho máximo de cada columna */
+  margin:auto;
+}
+
+/* Si necesitas que se ajuste en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .column-one,
+  .column-two,
+  .column-three{
+    max-width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+  }
+}
+
+/* Folder styles */
+.folder {
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  width: 240px;
+  height: 100px;
+  background: #8c899c;
+  position:relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+  z-index: 1000; /* Lower than modal */
+}
+
+/* Tab for the folder */
+.folder::before {
+  content: "";
+  width: 60px;
+  height: 15px;
+  background: #8c899c;
   position: absolute;
-  width: 100%;
-  height: 100vh;
-  background: url("../../assets/images/ImJoe.png") 75% 30% / 50vh auto no-repeat;
-  animation: parallaxAnimation 10s ease infinite alternate; 
+  top: -10px;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 45px;
 }
 
-@keyframes parallaxAnimation {
-  0%, 100% {
-    transform: translateY(-1vh); 
-  }
-  50% {
-    transform: translateY(-2.2vh); 
-  }
+/* Front flap of the folder */
+.folder::after {
+  content: "";
+  width: 240px;
+  height: 150px;
+  position: absolute;
+  background: #6d6b7a;
+  top: 30px;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.3);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-transform: rotateX(-10deg);
+  transform: rotateX(-10deg);
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
 }
 
-.info-panels {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%; 
+/* Paper inside the folder */
+.folder-inside {
+  width: 220px;
+  height: 100px;
+  position: absolute;
+  background: #fefff6;
+  top: 10px;
+  left: 10px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  -webkit-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  border: 2px solid #000000;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+/* Lines on the paper */
+.folder-inside::before {
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    #ffffff,
+    #ffffff 10px,
+    #282729 10px,
+    #272729 20px
+  );
+  position: absolute;
+  top: -48px;
+  left: 60px;
+  width: 100px;
+  height: 210px;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  opacity: 0.15;
 } 
+.folder-label {
+  position: absolute; /* Permite controlar la ubicación precisa */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -10%); /* Asegura el centrado */
+  color: #c5c2b1;  
+  z-index: 1500;  
+  pointer-events: none; /* Evita que interfiera con clics en el folder */
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size:18px;
+}
+.folder-label2 {
+  position: absolute; /* Permite controlar la ubicación precisa */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -10%); /* Asegura el centrado */
+  color: #c5c2b1;  
+  z-index: 1500;  
+  pointer-events: none; /* Evita que interfiera con clics en el folder */
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size:18px;
+}
+.folder-label3 {
+  position: absolute; /* Permite controlar la ubicación precisa */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -10%); /* Asegura el centrado */
+  color: #c5c2b1;  
+  z-index: 1500;  
+  pointer-events: none; /* Evita que interfiera con clics en el folder */
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size:18px;
+}
+/* Hover effect for folder */
+.folder:hover {
+  -webkit-transform: translate(-50%, -52%);
+  transform: translate(-50%, -52%);
+}
 
-.column-one {
-  width: 50%;
+.folder:hover::after {
+  -webkit-transform: rotateX(-15deg);
+  transform: rotateX(-15deg);
+}
+
+.folder:hover .folder-inside {
+  -webkit-transform: rotate(-7deg) translateY(0%);
+  transform: rotate(-23deg) translateY(-25%);
+}
+
+/* Modal styles */
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  background: #494949;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+  z-index: 2000; /* Higher than folder */
+  display: flex;
+  flex-direction: column;
+  opacity: 1; /* Ensure modal is visible */
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background: #b8b8cc9a;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Close button for modal */
+.modal-header .close-modal {
+  background: #df9898;
+  border-radius: 50px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Modal body */
+.modal-body {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+/* Modal */
+.modal-content {
+  background: linear-gradient(180deg, #e5eff9 25%, #e5eff9  25%, #e5eff9  50%, #e5eff9 50%, #e5eff9  75%, #ffffff 75%);
+  background-size: 50px 50px;
+  border-radius: 15px;
+  padding: 30px;
+  color: #333;
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #0088ff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Links */
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-content ul li {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.modal-content ul li a {
+  text-decoration: none;
+  color: #1e3d58;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.modal-content ul li a:hover {
+  background-color: #1e3d58;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content ul li a::before {
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
-.button { 
-  display: flex;
-  justify-content: space-around; 
-  padding: 1em;
-  background-color: transparent;
-}
- 
-.show-modal {
-  border: none;
-  background-color: rgb(219, 219, 219);
-  padding: 0.7em 1em;
-  margin: 0.2em;
-  border-radius: 1em;
-  font-weight: bolder;
-  cursor: pointer;
-  width: 100px;
-  align-content: center;
+.modal-content ul li a:hover::before {
+  width: 100%;
+  left: 0;
 }
 
-.show-modal:hover {
-  box-shadow: 0 0 10px #5c6bcd;
-}
-
-.show-modal:active {
-  background-color: rgb(238, 238, 238);
-}
-
-.modal {
-  color: white;  
-  background-color: transparent;  
-  text-align: justify;
-  width: 25em;
-  height: auto;
-  position: absolute;
-  bottom: -50px; 
-  left: -50px; 
-  padding: 1em;
-  z-index: 200;
-  margin: auto; 
-  border-radius: 1.5em;
-  box-shadow: 10px 10px 25px 1.2px #9f9de7;
-  font-family: MyFont, sans-serif;  
-}  
-
-.modal p {
-  color: #ff5733; 
-}
-
-.modal ul li {
-  color: #33ff57;  
-}
-
-.modal1-img {
-  display: none;
-  margin-right: 100px;
-} 
-
-.modal1Visible .modal1-img {
-  display: block;
-} 
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.title {
-  font-size: 1.3em;
-}
-
-.close-modal {
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  font-size: 1.3em;
-  background-color: white;
-}
-
-.close-modal:hover {
-  background-color: rgb(238, 238, 238);
-}
-
-.close-modal:active {
-  background-color: rgb(89, 89, 89);
-}
-
-@media (min-width: 601px) and (max-width: 1200px) {
-  .parallax {
-    display: none;  
+/* Adding a subtle stripe animation */
+@keyframes stripeAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
   }
 }
 
-@media (max-width: 600px) {
-  .parallax {
-    position: absolute;
-    width: 100%; 
-    height: 30vh;  
-    background: url("../../assets/images/ImJoeUp.png") 50% 50% / 30vh auto no-repeat;
-    top: 320px;  
-    animation: parallaxAnimation 10s ease infinite alternate; 
-  }
-  .modal {
-    position: relative;  
-    top: -150px;  
-    margin: 20px auto;   
-    width: 23em; 
-    height: auto;
-  }
-  .button {
-    display: flex;
-    flex-direction: column;  
-  } 
-  .show-modal {
-    margin-bottom: 20px;   
-  } 
-  
-}  
-
-@media (max-width: 510px) {
-  .parallax {
-    position: absolute;
-    width: 100%; 
-    height: 30vh;  
-    background: url("../../assets/images/ImJoeUp.png") 50% 50% / 30vh auto no-repeat;
-    top: 320px;  
-    animation: parallaxAnimation 10s ease infinite alternate;  
-  }
-  .modal {
-    position: relative;  
-    top: -150px;  
-    margin: 20px auto;   
-    width: 20em; 
-    height: auto; 
-  }
-  .show-modal {
-    display: flex;
-    font-size: 0.8em;
-    margin-bottom: 20px;  
-    text-align: center; 
-  }  
-  .button {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;  
-  } 
+.modal-content {
+  animation: stripeAnimation 3s linear infinite;
 }
 
-.hidden {
-  display: none;
-} 
+/* Slide-in animation for modal */
+@keyframes slideIn {
+  from {
+    transform: translate(-50%, -60%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
